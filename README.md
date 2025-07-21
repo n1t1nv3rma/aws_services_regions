@@ -21,11 +21,10 @@ For example, it can tell LLMs that:
 
 # How to Setup 
 
-# Git clone this MCP server (repo)
-% git clone 
+## Git clone this MCP server (repo)
+% https://github.com/n1t1nv3rma/aws_services_regions.git 
 
 ## For Amazon Q CLI:
-
 Save below information in the local ".amazonq/mcp.json" or in global "~/.aws/amazonq/mcp.json"
 ```json
 {
@@ -77,7 +76,6 @@ Save below information in the local "claude_desktop_config.json"
 % q
 ✓ awsrands loaded in 0.69 s
 
-
     ⢠⣶⣶⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣿⣿⣿⣶⣦⡀⠀
  ⠀⠀⠀⣾⡿⢻⣿⡆⠀⠀⠀⢀⣄⡄⢀⣠⣤⣤⡀⢀⣠⣤⣤⡀⠀⠀⢀⣠⣤⣤⣤⣄⠀⠀⢀⣤⣤⣤⣤⣤⣤⡀⠀⠀⣀⣤⣤⣤⣀⠀⠀⠀⢠⣤⡀⣀⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⢠⣿⣿⠋⠀⠀⠀⠙⣿⣿⡆
  ⠀⠀⣼⣿⠇⠀⣿⣿⡄⠀⠀⢸⣿⣿⠛⠉⠻⣿⣿⠛⠉⠛⣿⣿⠀⠀⠘⠛⠉⠉⠻⣿⣧⠀⠈⠛⠛⠛⣻⣿⡿⠀⢀⣾⣿⠛⠉⠻⣿⣷⡀⠀⢸⣿⡟⠛⠉⢻⣿⣷⠀⠀⠀⠀⠀⠀⣼⣿⡏⠀⠀⠀⠀⠀⢸⣿⣿
@@ -95,14 +93,16 @@ Save below information in the local "claude_desktop_config.json"
 
 /help all commands  •  ctrl + j new lines  •  ctrl + s fuzzy search
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🤖 You are chatting with claude-3.7-sonnet
+ You are chatting with claude-3.7-sonnet
 
 
 > /tools
 
 
 Tool                                    Permission
-▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔Built-in:
+▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+
+Built-in:
 - execute_bash                          * trust read-only commands
 - fs_read                               * trusted
 - fs_write                              * not trusted
@@ -116,4 +116,6 @@ awsrands (MCP):
 - awsrands___get_aws_services           * not trusted
 
 
+# Master prompt - start with this:
 
+"You have all the tools which can help you find out what AWS services are available in which regions or vice-versa. You can run recursive queries against the URI or URL in the initial response to further find out details on launch date of service in a region. Use your tools to solve all AWS regions or service related queries."
