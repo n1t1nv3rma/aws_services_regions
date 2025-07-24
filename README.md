@@ -13,11 +13,12 @@ It has comprehensive information about AWS services and regions. It can help you
 8. Identifying which services are globally available vs. regionally restricted
 
 For example, it can tell LLMs that:
-• US East (N. Virginia/us-east-1) has the most AWS services available (388)
-• AWS IAM, CloudWatch, EC2, and S3 are available in all 37 AWS regions
-• The newest AWS region appears to be Asia Pacific (Taipei/ap-east-2)
-• There are 33 AWS Local Zones connected to parent regions
-• Some services like Amazon Q Developer are only available in 2 regions
+
+* US East (N. Virginia/us-east-1) has the most AWS services available (388)
+* AWS IAM, CloudWatch, EC2, and S3 are available in all 37 AWS regions
+* The newest AWS region appears to be Asia Pacific (Taipei/ap-east-2)
+* There are 33 AWS Local Zones connected to parent regions
+* Some services like Amazon Q Developer are only available in 2 regions
 
 # How to Setup 
 
