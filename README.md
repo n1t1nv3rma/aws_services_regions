@@ -1,4 +1,4 @@
-# MCP server to aws_services_regions
+# MCP server to provide accurate information on AWS Services and Regions
 Fast MCP server that helps LLMs to optimally and accurately find list of all AWS services available in AWS regions. 
 
 It has comprehensive information about AWS services and regions. It can help your LLM with any specific questions about AWS Services or Regions. For example:
