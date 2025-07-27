@@ -39,7 +39,7 @@ Save below information in the local ".amazonq/mcp.json" or in global "~/.aws/ama
         "bs4",
         "mcp",
         "run",
-        "/Users/nitin/Documents/AWS/MCP/aws-services-regions/main.py"
+        "/Users/nitin/Documents/AWS/MCP/aws_services_regions/main.py"
       ],
       "env": {},
       "timeout": 120000,
@@ -65,7 +65,7 @@ Save below information in the local "claude_desktop_config.json"
         "bs4",    
         "mcp",
         "run",
-        "/Users/nitin/Documents/AWS/MCP/aws-services-regions/main.py"
+        "/Users/nitin/Documents/AWS/MCP/aws_services_regions/main.py"
       ]
     }
  }
@@ -111,10 +111,12 @@ Built-in:
 - use_aws                               * trust read-only commands
 
 awsrands (MCP):
-- awsrands___get_aws_latest_services    * not trusted
-- awsrands___get_aws_localzones         * not trusted
-- awsrands___get_aws_regions            * not trusted
-- awsrands___get_aws_services           * not trusted
+- awsrands___aws_latest_services                              * not trusted
+- awsrands___aws_localzones                                   * not trusted
+- awsrands___aws_regions                                        trusted
+- awsrands___aws_regions_for_service                            trusted
+- awsrands___aws_services                                       trusted
+- awsrands___aws_services_in_region                             trusted
 
 
 # Master prompt - start with this:
