@@ -39,7 +39,7 @@ Save below information in the local ".amazonq/mcp.json" or in global "~/.aws/ama
         "bs4",
         "mcp",
         "run",
-        "/Users/nitin/Documents/AWS/MCP/aws_services_regions/main.py"
+        "/Users/User/Documents/AWS/MCP/aws_services_regions/main.py"
       ],
       "env": {},
       "timeout": 120000,
@@ -65,7 +65,7 @@ Save below information in the local "claude_desktop_config.json"
         "bs4",    
         "mcp",
         "run",
-        "/Users/nitin/Documents/AWS/MCP/aws_services_regions/main.py"
+        "/Users/User/Documents/AWS/MCP/aws_services_regions/main.py"
       ]
     }
  }
