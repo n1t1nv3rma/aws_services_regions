@@ -1,11 +1,11 @@
 #from typing import Any
 import httpx
 from bs4 import BeautifulSoup
-from mcp.server.fastmcp import FastMCP, Context
-from mcp.server.fastmcp.prompts import base
+from mcp.server.mcpserver import MCPServer, Context
+from mcp.server.mcpserver.prompts import base
 
-# Initialize FastMCP server
-mcp = FastMCP("awsrands")
+# Initialize MCP server (FastMCP was renamed to MCPServer in mcp SDK 2.x)
+mcp = MCPServer("awsrands", version="0.1.0")
 
 # Constants
 NWS_API_BASE = "https://www.aws-services.info/"
@@ -63,7 +63,7 @@ async def aws_services() -> str:
 
 # Function to fetch list of all aws regions for a specific service and format output in table form
 @mcp.tool()
-async def aws_regions_for_service(service_regions_url) -> str:
+async def aws_regions_for_service(service_regions_url: str) -> str:
     """
     Provides list of all AWS regions where a given AWS Service is available, and date when that Service was launched in the AWS regions.
     You MUST run your 'aws_services' tool to find the service URLs of all AWS Services. Refer to the "Service in Regions URL" from output of the "aws_services" tool to find the service URLs.
@@ -166,7 +166,7 @@ async def aws_regions() -> str:
 
 # Function to fetch list of all aws regions for a specific service and format output in table form
 @mcp.tool()
-async def aws_services_in_region(regions_url) -> str:
+async def aws_services_in_region(regions_url: str) -> str:
     """
     Provides list of all AWS services in a specific AWS region, and date when that Service was launched in specific AWS region.
     You MUST run your 'aws_regions' tool to find the region URLs of all AWS Regions. Refer to the "Services In This Region URL" from output of the "aws_regions" tool to find the region URLs.

@@ -3,8 +3,11 @@ name = "aws-services-regions"
 version = "0.1.0"
 description = "Fast MCP server that helps LLMs to optimally and accurately find list of all AWS services available in AWS regions."
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.10"
 dependencies = [
-    "mcp[cli]>=1.12.0",
-    "bs4>=0.0.2"
+    "mcp[cli]>=2.2.0,<3",
+    "bs4>=0.0.2",
+    # Declared explicitly: mcp 2.x switched to httpx2, so httpx is no longer
+    # pulled in transitively.
+    "httpx>=0.28.1",
 ]

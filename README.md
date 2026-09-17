@@ -12,34 +12,56 @@ It has comprehensive information about AWS services and regions. It can help you
 7. Finding regions with the most or least services
 8. Identifying which services are globally available vs. regionally restricted
 
-For example, it can tell LLMs that:
+For example, it can tell LLMs that (snapshot taken 2026-09-17 — the server always serves live data, so these figures move):
 
-* US East (N. Virginia/us-east-1) has the most AWS services available (388)
-* AWS IAM, CloudWatch, EC2, and S3 are available in all 37 AWS regions
-* The newest AWS region appears to be Asia Pacific (Taipei/ap-east-2)
-* There are 33 AWS Local Zones connected to parent regions
-* Some services like Amazon Q Developer are only available in 2 regions
+* US East (N. Virginia/us-east-1) has the most AWS services available (390)
+* AWS IAM, CloudWatch, EC2, and S3 are available in all 39 AWS regions
+* The newest AWS region appears to be AWS European Sovereign Cloud (Germany/eusc-de-east-1)
+* There are 35 AWS Local Zones connected to parent regions
+* Some services like Amazon Q Developer are only available in 4 regions
 
 # How to Setup 
 
-## Git clone this MCP server (repo)
-% https://github.com/n1t1nv3rma/aws_services_regions.git 
+## Prerequisites
 
-## For Amazon Q CLI:
-Save below information in the local ".amazonq/mcp.json" or in global "~/.aws/amazonq/mcp.json"
+* [uv](https://docs.astral.sh/uv/getting-started/installation/) — runs the server and resolves its dependencies from `uv.lock`.
+* Python 3.10 or newer. `uv` downloads a suitable interpreter for you if you don't have one.
+
+## Clone this repo
+
+```
+git clone https://github.com/n1t1nv3rma/aws_services_regions.git
+```
+
+Take note of the absolute path to your clone — every config below needs it.
+
+## Configure your MCP client
+
+Every client below uses the same invocation: `uv run --directory <repo> main.py`. Dependencies come from the repo's `pyproject.toml` and `uv.lock`, so there is nothing to `pip install` by hand and no `--with` flags to keep in sync as the SDK evolves.
+
+In each snippet, replace `/absolute/path/to/aws_services_regions` with your clone path, and check that `command` matches your `uv` location (`which uv`).
+
+### For Kiro:
+
+Save below information in the global "~/.kiro/settings/mcp.json" or in the per-workspace ".kiro/settings/mcp.json"
 ```json
 {
   "mcpServers": {
     "awsrands": {
-      "command": "/opt/homebrew/bin/uvx",
+      "command": "/opt/homebrew/bin/uv",
       "args": [
-        "--with",
-        "mcp[cli]",
-        "--with",
-        "bs4",
-        "mcp",
         "run",
-        "/Users/User/Documents/AWS/MCP/aws_services_regions/main.py"
+        "--directory",
+        "/absolute/path/to/aws_services_regions",
+        "main.py"
+      ],
+      "autoApprove": [
+        "aws_services",
+        "aws_regions",
+        "aws_regions_for_service",
+        "aws_services_in_region",
+        "aws_localzones",
+        "aws_latest_services"
       ],
       "env": {},
       "timeout": 120000,
@@ -49,7 +71,31 @@ Save below information in the local ".amazonq/mcp.json" or in global "~/.aws/ama
 }
 ```
 
-## For Claude Desktop:
+Every tool is a read-only HTTP GET against a public site, so listing all six under `autoApprove` is safe. Drop the key if you would rather confirm each call.
+
+### For Amazon Q CLI:
+
+Save below information in the local ".amazonq/mcp.json" or in global "~/.aws/amazonq/mcp.json"
+```json
+{
+  "mcpServers": {
+    "awsrands": {
+      "command": "/opt/homebrew/bin/uv",
+      "args": [
+        "run",
+        "--directory",
+        "/absolute/path/to/aws_services_regions",
+        "main.py"
+      ],
+      "env": {},
+      "timeout": 120000,
+      "disabled": false
+    }
+  }
+}
+```
+
+### For Claude Desktop:
 
 Save below information in the local "claude_desktop_config.json"
 ```json
@@ -59,18 +105,18 @@ Save below information in the local "claude_desktop_config.json"
       "command": "/opt/homebrew/bin/uv",
       "args": [
         "run",
-        "--with",
-        "mcp[cli]",
-        "--with",
-        "bs4",    
-        "mcp",
-        "run",
-        "/Users/User/Documents/AWS/MCP/aws_services_regions/main.py"
+        "--directory",
+        "/absolute/path/to/aws_services_regions",
+        "main.py"
       ]
     }
- }
+  }
 }
 ```
+
+## SDK compatibility
+
+This server targets the `mcp` Python SDK 2.x (`MCPServer`, formerly `FastMCP`). If you are pinned to `mcp` 1.x, use a release of this repo from before the 2.x migration — the 1.x import path `mcp.server.fastmcp` no longer exists in 2.x, and 2.x dropped `httpx` in favour of `httpx2`, so `httpx` is now declared as a direct dependency here.
 
 # Sample Run
 
