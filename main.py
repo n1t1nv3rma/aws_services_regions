@@ -1,11 +1,31 @@
 #from typing import Any
+import tomllib
+from pathlib import Path
+
 import httpx
 from bs4 import BeautifulSoup
 from mcp.server.mcpserver import MCPServer, Context
 from mcp.server.mcpserver.prompts import base
 
+
+def _read_version() -> str:
+    """Read the version from pyproject.toml, the single source of truth.
+
+    This project declares no build backend, so it is never installed and there
+    is no package metadata for importlib.metadata to read. The fallback keeps
+    the server startable if main.py is ever copied out on its own.
+    """
+    try:
+        pyproject = Path(__file__).with_name("pyproject.toml")
+        return tomllib.loads(pyproject.read_text(encoding="utf-8"))["project"]["version"]
+    except (OSError, KeyError, tomllib.TOMLDecodeError):
+        return "0.0.0+unknown"
+
+
+SERVER_VERSION = _read_version()
+
 # Initialize MCP server (FastMCP was renamed to MCPServer in mcp SDK 2.x)
-mcp = MCPServer("awsrands", version="0.1.1")
+mcp = MCPServer("awsrands", version=SERVER_VERSION)
 
 # Constants
 NWS_API_BASE = "https://www.aws-services.info/"

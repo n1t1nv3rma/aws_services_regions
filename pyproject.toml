@@ -1,9 +1,10 @@
 [project]
 name = "aws-services-regions"
-version = "0.1.0"
+version = "0.1.1"
 description = "Fast MCP server that helps LLMs to optimally and accurately find list of all AWS services available in AWS regions."
 readme = "README.md"
-requires-python = ">=3.10"
+# 3.11+ for tomllib, used to read this file's version at startup.
+requires-python = ">=3.11"
 dependencies = [
     "mcp[cli]>=2.2.0,<3",
     "bs4>=0.0.2",
