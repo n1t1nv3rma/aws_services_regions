@@ -5,11 +5,11 @@ from mcp.server.mcpserver import MCPServer, Context
 from mcp.server.mcpserver.prompts import base
 
 # Initialize MCP server (FastMCP was renamed to MCPServer in mcp SDK 2.x)
-mcp = MCPServer("awsrands", version="0.1.0")
+mcp = MCPServer("awsrands", version="0.1.1")
 
 # Constants
 NWS_API_BASE = "https://www.aws-services.info/"
-USER_AGENT = "rands-app/1.0"
+USER_AGENT = "rands-mcp/1.1"
 
 # Function to fetch list of all aws services and format output in table form
 @mcp.tool()
